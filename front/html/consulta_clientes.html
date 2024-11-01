@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Clientes - Panel de Control</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/consultacliente.js"></script> 
+</head>
+<body>
+    <header>
+        <br>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Clientes</a>
+                    <div class="dropdown-content">
+                        <a href="registro_cliente.html">Registro de Cliente</a>
+                        <a href="consulta_clientes.html">Consulta de Clientes</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Pedidos</a>
+                    <div class="dropdown-content">
+                        <a href="registro_pedidos.html">Registro de Pedidos</a>
+                        <a href="consulta_pedidos.html">Consulta de Pedidos</a>
+                    </div>
+                </li>
+                <li><a href="recorridos.html">Recorridos de Reparto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="consultarClientes">
+
+            <h2>Busqueda de Clientes</h2>
+
+            <div id="resultado"></div><br>
+
+            <label for="buscarCliente">Buscar Cliente:</label>
+            <input type="text" id="buscarCliente" name="buscarCliente" placeholder="Nombre, Apellido o DNI" required>
+            <button type="button" class="buscar" onclick="buscarCliente()">Buscar</button>
+            <button type="reset" class="cancelar" onclick="cancelarBusqueda()">Cancelar</button>
+            
+            <h2>Tabla de Clientes</h2>
+            <table id="tablaClientes">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>DNI</th>
+                        <th>Teléfono</th>
+                        <th>Calle</th>
+                        <th>Numero</th>
+                        <th>Localidad</th>
+                        <th>Manzana</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <button onclick="modificarCliente(this)">Modificar</button>
+                            <button onclick="eliminarCliente(this)">Eliminar</button>
+                        </td>
+                    </tr>
+                    <!-- Más filas aquí -->
+                </tbody>
+                
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sodería</p>
+    </footer>
+    <script src="..//js/buscarcliente.js"></script> 
+</body>
+</html>
+
+

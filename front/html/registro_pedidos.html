@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Pedidos - Panel de Control</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <br>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Clientes</a>
+                    <div class="dropdown-content">
+                        <a href="registro_cliente.html">Registro de Cliente</a>
+                        <a href="consulta_clientes.html">Consulta de Clientes</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Pedidos</a>
+                    <div class="dropdown-content">
+                        <a href="registro_pedidos.html">Registro de Pedidos</a>
+                        <a href="consulta_pedidos.html">Consulta de Pedidos</a>
+                    </div>
+                </li>
+                <li><a href="recorridos.html">Recorridos de Reparto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="pedidos">
+            <h2>Registrar Pedido</h2>
+            <label for="buscarCliente">Buscar Cliente:</label>
+            <input type="text" id="buscarCliente" name="buscarCliente" placeholder="Nombre, Apellido o DNI" required>
+            <button type="button" class="buscar" onclick="buscarCliente()">Buscar</button>
+            <button type="reset" class="cancelar" onclick="cancelarBusqueda()">Cancelar</button>
+
+            <div id="resultado"></div>
+
+            <form id="formNuevoPedido">
+                <label for="producto">Producto:</label>
+                <input type="text" id="producto" name="producto" required>
+
+                <label for="precio">Precio:</label>
+                <input type="number" id="precio" name="precio" step="0.01" required>
+
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" required>
+
+                <button type="button" class="agregar" onclick="agregarProducto()">Agregar Producto</button>
+            </form>
+
+            <h2>Productos en el Pedido</h2>
+            <table id="tablaProductos">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se mostrarán los productos agregados -->
+                </tbody>
+            </table>
+
+            <button type="button" class="guardar" onclick="guardarPedido()">Guardar Pedido</button>
+        </section>
+
+        <h1>Lista de Pedidos</h1>
+    <table id="pedidos-table" border="1">
+        <thead>
+            <tr>
+                <th>ID Pedido</th>
+                <th>Nombre Cliente</th>
+                <th>Apellido Cliente</th>
+                <th>DNI</th>
+                <th>Calle</th>
+                <th>Número</th>
+                <th>Manzana</th>
+                <th>Teléfono</th>
+                <th>ID Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    
+    </main>
+    <footer>
+        <p>&copy; 2024 Sodería</p>
+    </footer>
+    <script src="../js/registropedido.js"></script>
+</body>
+</html>
+

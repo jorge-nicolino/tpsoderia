@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Lista de Pedidos</title>
+    <style>
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        #loading-message {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<header>
+    <br>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Clientes</a>
+                <div class="dropdown-content">
+                    <a href="registro_cliente.html">Registro de Cliente</a>
+                    <a href="consulta_clientes.html">Consulta de Clientes</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Pedidos</a>
+                <div class="dropdown-content">
+                    <a href="registro_pedidos.html">Registro de Pedidos</a>
+                    <a href="consulta_pedidos.html">Consulta de Pedidos</a>
+                </div>
+            </li>
+            <li><a href="recorridos.html">Recorridos de Reparto</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+    <h1>Lista de Pedidos</h1>
+    <div id="loading-message">Cargando pedidos...</div>
+    <table id="pedidos-table" border="1">
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre Cliente</th>
+                <th>Apellido Cliente</th>
+                <th>Calle</th>
+                <th>Número</th>
+                <th>Manzana</th>
+                <th>Teléfono</th>
+                <th>Productos</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        fetch('http://localhost:3000/pedidos')
+            .then(response => response.json())
+            .then(data => {
+                const groupedPedidos = {};
+
+                data.forEach(pedido => {
+                    const key = `${pedido.dni}-${pedido.nombre}-${pedido.apellido}`;
+                    if (!groupedPedidos[key]) {
+                        groupedPedidos[key] = {
+                            nombre: pedido.nombre,
+                            apellido: pedido.apellido,
+                            dni: pedido.dni,
+                            calle: pedido.calle,
+                            numero: pedido.numero,
+                            manzana: pedido.manzana,
+                            telefono: pedido.telefono,
+                            productos: []
+                        };
+                    }
+                    groupedPedidos[key].productos.push({
+                        cantidad: pedido.cantidad,
+                        total_detalle: pedido.total_detalle
+                    });
+                });
+
+                const tbody = document.querySelector('#pedidos-table tbody');
+                for (const key in groupedPedidos) {
+                    const cliente = groupedPedidos[key];
+                    const productos = cliente.productos.map(prod => 
+                        `Cantidad: ${prod.cantidad}, Total: ${prod.total_detalle}`
+                    ).join('<br>');
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${cliente.dni}</td>
+                        <td>${cliente.nombre}</td>
+                        <td>${cliente.apellido}</td>
+                        <td>${cliente.calle}</td>
+                        <td>${cliente.numero}</td>
+                        <td>${cliente.manzana}</td>
+                        <td>${cliente.telefono}</td>
+                        <td>${productos}</td>
+                    `;
+                    tbody.appendChild(row);
+                }
+
+                document.getElementById('loading-message').style.display = 'none'; // Ocultar mensaje de carga
+            })
+            .catch(error => {
+                console.error('Error al cargar pedidos:', error);
+                document.getElementById('loading-message').innerText = 'Error al cargar pedidos. Inténtalo más tarde.';
+            });
+    </script>
+</body>
+</html>

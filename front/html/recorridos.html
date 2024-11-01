@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recorridos - Panel de Control</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Clientes</a>
+                    <div class="dropdown-content">
+                        <a href="registro_cliente.html">Registro de Cliente</a>
+                        <a href="consulta_clientes.html">Consulta de Clientes</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Pedidos</a>
+                    <div class="dropdown-content">
+                        <a href="registro_pedidos.html">Registro de Pedidos</a>
+                        <a href="consulta_pedidos.html">Consulta de Pedidos</a>
+                    </div>
+                </li>
+                <li><a href="recorridos.html">Recorridos de Reparto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="recorridos">
+            <h2>Recorridos por Barrio</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Dirección</th>
+                        <th>Barrio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Juan Pérez</td>
+                        <td>Calle Falsa 123</td>
+                        <td>Centro</td>
+                    </tr>
+                    <tr>
+                        <td>Ana Gómez</td>
+                        <td>Avenida Siempre Viva 456</td>
+                        <td>Springfield</td>
+                    </tr>
+                    <tr>
+                        <td>Pedro Ruiz</td>
+                        <td>Calle 9 de Julio 789</td>
+                        <td>Los Jardines</td>
+                    </tr>
+                    <!-- Agrega más filas según sea necesario -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Sodería</p>
+    </footer>
+    
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
